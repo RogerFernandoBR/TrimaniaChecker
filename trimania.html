@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <style type="text/css">
+      .container {
+        max-width: 100% !important;
+        margin: 0px !important;
+        padding: 0px;
+      }
+
+      .cards {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;  
+      }
+
+      .card {
+        -webkit-box-shadow: 0px 0px 11px -1px rgba(77,75,77,1);
+        -moz-box-shadow: 0px 0px 11px -1px rgba(77,75,77,1);
+        box-shadow: 0px 0px 11px -1px rgba(77,75,77,1);
+        margin: 10px;
+      }
+
+      .cards p {
+        display: flex;
+        font-size: 12px !important;
+        margin-bottom: -.3rem;
+      }
+
+      .cards > .card {
+        width: 14rem !important;
+      }
+
+      .b {
+        font-weight: bold;
+      }
+
+      .card-header-inf {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .dezenas {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 5px;
+      }
+
+      .colunas{
+        display: flex;
+        flex-direction: column;
+      }
+
+      .dezena {
+        background-color: #E6E6FA;
+        border-radius: 100px;
+        width: 30px;
+        height: 30px;
+        border: 1px solid #D8BFD8;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        margin: 4px;
+      }
+
+      .body-header {
+        display: flex;
+        justify-content: space-between;
+        min-height: 107.93px
+      }
+
+      .form {
+        display: flex;
+        flex-direction: row;
+        width: 25%;
+        margin-right: 10px;
+      }
+
+      .form > .btn {
+        margin-left: 10px;
+      }
+
+      #selectedBalls {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        width: 75%;
+      }
+
+      #selectedBalls span {
+        background-color: lightgreen;
+        cursor: pointer;
+      }
+
+      input[type=number]::-webkit-inner-spin-button { 
+          -webkit-appearance: none;          
+      }
+    </style>
+
+    <title>Trimania!</title>
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="card">
+        <div class="card-header">
+          Insira as dezenas aqui:
+        </div>
+        <form>
+          <div class="card-body body-header">
+            <div class="form">
+              <input type="number" class="form-control" id="newNumber" placeholder="Novo número" autocomplete="off">
+              <input class="btn btn-primary" type="submit" value="Aplicar" onClick="addNumero()">
+            </div>
+            <div id="selectedBalls">
+              Aqui vão as bolas lançadas
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="cards" id="cards">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <div class="card-header-inf">
+              <p class="card-text text-muted">
+                <span class="b">Titular:&nbsp;</span> 
+                <span class="name-value">Roger</span>
+              </p>
+              <p class="card-text">
+                <span class="b">Título:&nbsp;</span>
+                <span class="titulo-value">567.239</span>
+              </p>
+            </div>
+
+            <div class="dezenas">
+              <div class="colunas">
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+              </div>
+              <div class="colunas">
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+              </div>
+              <div class="colunas">
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+              </div>
+              <div class="colunas">
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+              </div>
+              <div class="colunas">
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+                <span class="dezena">00</span>
+              </div>
+            </div>
+            
+            <p class="card-text">
+              <span class="b">Status:&nbsp;</span>
+              <span class="status-value">Não selecionado</span>
+            </p>
+          </div>
+        </div>        
+      </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+
+      let titulos = {
+       "Roger": [
+         {
+             "título": 570429,
+             "status": 0,
+             "dezenas": [
+                01, 05, 06, 11, 15, 18, 19, 21, 26, 28, 33, 36, 39, 40, 45, 46, 53, 56, 58, 60
+             ]
+         },
+         {
+             "título": 559722,
+             "status": 0,
+             "dezenas": [
+                02, 06, 08, 13, 14, 18, 21, 23, 29, 30, 32, 34, 35, 44, 45, 46, 47, 52, 55, 60
+             ]
+         },
+         {
+             "título": 558486,
+             "status": 0,
+             "dezenas": [
+                01, 10, 11, 14, 15, 21, 24, 25, 26, 28, 32, 33, 34, 41, 43, 46, 50, 53, 56, 59
+             ]
+         },
+         {
+             "título": 564375,
+             "status": 0,
+             "dezenas": [
+                01, 02, 05, 06, 09, 22, 24, 27, 28, 30, 31, 36, 39, 41, 44, 46, 52, 54, 55, 57
+             ]
+         },
+         {
+             "título": 563143,
+             "status": 0,
+             "dezenas": [
+                05, 08, 11, 13, 14, 18, 24, 26, 28, 30, 36, 38, 41, 43, 44, 46, 50, 52, 53, 54
+             ]
+         },
+         {
+             "título": 553517,
+             "status": 0,
+             "dezenas": [
+                01, 02, 05, 13, 15, 17, 18, 21, 23, 25, 35, 36, 39, 40, 43, 46, 49, 54, 56, 58
+             ]
+         },
+         {
+             "título": 560281,
+             "status": 0,
+             "dezenas": [
+                01, 03, 07, 08, 15, 18, 20, 24, 25, 30, 31, 33, 39, 40, 43, 48, 51, 53, 54, 60
+             ]
+         },
+         {
+             "título": 563179,
+             "status": 0,
+             "dezenas": [
+                01, 02, 03, 09, 11, 20, 23, 26, 28, 30, 31, 32, 35, 42, 44, 50, 54, 55, 56, 60
+             ]
+         },
+         {
+             "título": 569486,
+             "status": 0,
+             "dezenas": [
+                02, 04, 06, 13, 15, 17, 19, 21, 22, 30, 31, 32, 34, 38, 44, 48, 49, 53, 56, 57
+             ]
+         },
+         {
+             "título": 561224,
+             "status": 0,
+             "dezenas": [
+                02, 03, 05, 09, 14, 16, 21, 23, 28, 29, 31, 34, 41, 42, 43, 54, 55, 56, 58, 60
+             ]
+         },
+        ],
+       "Procópio": [
+         {
+             "título": 562412,
+             "status": 0,
+             "dezenas": [
+                03, 09, 11, 13, 15, 17, 19, 22, 27, 28, 33, 37, 42, 43, 45, 46, 48, 50, 59, 60
+             ]
+         },
+         {
+             "título": 569836,
+             "status": 0,
+             "dezenas": [
+                02, 03, 05, 06, 09, 20, 23, 26, 29, 30, 31, 36, 40, 44, 45, 47, 49, 50, 52, 60
+             ]
+         },
+        ],
+       "Margarete": [
+         {
+             "título": 360119,
+             "status": 0,
+             "dezenas": [
+                04, 06, 09, 10, 13, 16, 26, 27, 29, 30, 33, 35, 39, 41, 43, 47, 51, 55, 57, 58
+             ]
+         }
+        ],
+       "Elisabete": [
+         {
+             "título": 030692,
+             "status": 0,
+             "dezenas": [
+                02, 11, 12, 13, 15, 16, 20, 21, 22, 24, 31, 34, 41, 43, 44, 47, 48, 51, 52, 54
+             ]
+         }
+        ]
+      };
+
+      $(document).ready(function(){
+        let cardsContainer = document.getElementById("cards");
+
+        cardsContainer.innerHTML = "";
+
+        let html = "";
+
+        $.each(titulos, function (titular, titulosArray) {
+          $.each(titulosArray, function (i, dados) {
+            html += 
+            '<div class="card" style="width: 18rem;">'+
+              '<div class="card-body">'+
+                '<div class="card-header-inf">'+
+                  '<p class="card-text text-muted">'+
+                    '<span class="b">Titular:&nbsp;</span>'+
+                    '<span class="name-value">'+titular+'</span>'+
+                  '</p>'+
+                  '<p class="card-text">'+
+                    '<span class="b">Título:&nbsp;</span>'+
+                    '<span class="titulo-value">'+dados.título+'</span>'+
+                  '</p>'+
+                '</div>'+
+
+                '<div class="dezenas">'+
+                  '<div class="colunas">'+
+                    '<span class="dezena">'+dados.dezenas[0]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[1]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[2]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[3]+'</span>'+
+                  '</div>'+
+                  '<div class="colunas">'+
+                    '<span class="dezena">'+dados.dezenas[4]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[5]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[6]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[7]+'</span>'+
+                  '</div>'+
+                  '<div class="colunas">'+
+                    '<span class="dezena">'+dados.dezenas[8]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[9]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[10]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[11]+'</span>'+
+                  '</div>'+
+                  '<div class="colunas">'+
+                    '<span class="dezena">'+dados.dezenas[12]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[13]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[14]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[15]+'</span>'+
+                  '</div>'+
+                  '<div class="colunas">'+
+                    '<span class="dezena">'+dados.dezenas[16]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[17]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[18]+'</span>'+
+                    '<span class="dezena">'+dados.dezenas[19]+'</span>'+
+                  '</div>'+
+                '</div>'+
+              '</div>'+
+            '</div>';
+          });
+        });
+
+        cardsContainer.innerHTML = html;
+      });
+
+      let numerosSelecionados = [];
+
+        function addNumero(){
+          let newNumber = $('#newNumber').val();
+          let numeroJaSorteado = false;
+
+          $.each(numerosSelecionados, function(i, numero) {            
+            if (newNumber == numero) {
+              console.log('numero já sorteado');
+              numeroJaSorteado = true;
+            }
+          });
+
+          if (!numeroJaSorteado) {
+            if (newNumber > 0 && newNumber <= 60) {
+              numerosSelecionados.push(newNumber);
+            }else{
+              console.log('Número selecionado inválido');
+            }
+            
+          }          
+          
+          $('#newNumber').val("");
+          
+          let selectedBalls = $("#selectedBalls");
+          selectedBalls.html("");
+          selectedBalls.html(function() {
+            let tempHTML = "";
+            $.each(numerosSelecionados, function(i, numero){
+              if (numero <= 60 && numero > 0) {
+                tempHTML += '<span class="dezena" onClick="removeNumero('+numero+')">'+numero+'</span>';
+              }            
+            });
+            return tempHTML;
+          });
+
+          let dezenas = document.getElementsByClassName("dezena");
+          
+          $.each(dezenas, function(i, dezena) {
+            let dezenaAtual = parseInt(dezena.innerHTML);
+            
+            if (dezenaAtual == newNumber) {
+              let elemento = dezenas[i];
+              elemento.style.backgroundColor = "lightgreen";
+            }
+          });
+
+          $("#newNumber").focus();
+        };
+
+        function removeNumero(numero){
+          if (window.confirm("Você realmente quer remover o número " + numero + "?")) {
+            let dezenas = document.getElementsByClassName("dezena");
+
+            $.each(dezenas, function(i, dezena) {
+              let dezenaAtual = parseInt(dezena.innerHTML);
+              
+              if (dezenaAtual == numero) {
+                let elemento = dezenas[i];
+                elemento.style.backgroundColor = "#E6E6FA";
+              }
+            });
+
+            $.each(numerosSelecionados, function(i, numeroAtual) {            
+              if (numeroAtual == numero) {
+                numerosSelecionados.splice(i, 1);
+              }
+            });
+
+            addNumero();
+
+            $("#newNumber").focus();
+          }
+        };
+
+
+    </script>
+  </body>
+</html>
